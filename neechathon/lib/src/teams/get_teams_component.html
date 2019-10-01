@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+<br>
+<ul *ngFor="let team of teams">
+  <a [routerLink]="teamUrl(team.name)"><h3>Team: {{team.name}}</h3></a>
+  <h5>Project: {{team.project.title}}</h5>
+  <h5>Members: </h5>
+  <li>
+    {{team.user1?.name}}
+  </li>
+  <li *ngIf="team.user2!=null">
+    {{team.user2?.name}}
+  </li>
+  <li *ngIf="team.user3!=null">
+    {{team.user3?.name}}
+  </li>
+  <li *ngIf="team.user4!=null">
+    {{team.user4?.name}}
+  </li>
+</ul>

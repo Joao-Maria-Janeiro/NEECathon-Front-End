@@ -1,0 +1,58 @@
+
+<div class="container">
+
+  <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+      <div class="form-group">
+        <label>email:&nbsp;*</label>
+        <input required type="email"
+        class="form-control" [(ngModel)]="user.email" placeholder="email"
+        #name="ngForm"
+        [ngClass]="setCssValidityClass(name)"
+        ngControl="name">
+        <div [hidden]="name.valid || name.pristine" class="invalid-feedback">
+          email is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>password:&nbsp;*</label>
+        <input placeholder="password" required type="password"
+        class="form-control" [(ngModel)]="user.password"
+        #password="ngForm"
+        [ngClass]="setCssValidityClass(password)"
+        ngControl="password">
+        <div [hidden]="password.valid || password.pristine" class="invalid-feedback">
+            Password is required
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-auto">
+          <button [disabled]="!userForm.form.valid" type="submit" class="btn btn-primary">
+              Submit
+          </button>
+        </div>
+        <small class="col text-right">*&nbsp;Required</small>
+      </div>
+
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+      <div *ngIf="valid">
+          <div class="alert alert-success" role="alert">
+              {{out}}
+          </div>
+      </div>
+      <div *ngIf="valid==false">
+          <div class="alert alert-danger" role="alert">
+              {{out}}
+          </div>
+          <button (click)="submitted=false" class="btn btn-primary">Edit</button>
+      </div>
+  </div>
+
+
+</div>

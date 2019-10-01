@@ -1,0 +1,441 @@
+<br><br>
+
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Create your team</h1>
+
+        <p>How many members does your team have? (teams must be between 2-4 elements)</p>
+        <!-- <input (keyup)="onKey($event)">
+        <p style="color: red;">{{exceedeNumberOfUsers}}</p> -->
+
+        <!-- <label for="power">How many members does your team have?&nbsp;*</label>
+        <select class="form-control" id="power" required
+                [(ngModel)]="numberOfMembersText"
+                ngControl="power">
+            <option [value]="'1'">1</option>
+            <option [value]="'2'">2</option>
+            <option [value]="'3'">3</option>
+            <option [value]="'4'">4</option>
+        </select> -->
+
+        <select [(ngModel)]="numberOfMembersText" (change)="applyChange($event.target.value)" class="form-control">
+          <option *ngFor="let option of options" value="{{option}}">{{option}}</option>
+        </select>
+
+
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+        <h2>Create the first team member</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>name:&nbsp;*</label>
+                    <input required type="text"
+                    class="form-control" [(ngModel)]="user1.name" placeholder="name"
+                    #name="ngForm"
+                    [ngClass]="setCssValidityClass(name)"
+                    ngControl="name">
+                    <div [hidden]="name.valid || name.pristine" class="invalid-feedback">
+                    Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>password:&nbsp;*</label>
+                    <input placeholder="password" required type="password"
+                    class="form-control" [(ngModel)]="user1.password"
+                    #password="ngForm"
+                    [ngClass]="setCssValidityClass(password)"
+                    ngControl="password">
+                    <div [hidden]="password.valid || password.pristine" class="invalid-feedback">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>email:&nbsp;*</label>
+                    <input required type="email"
+                    class="form-control" [(ngModel)]="user1.email" placeholder="email"
+                    #email="ngForm"
+                    [ngClass]="setCssValidityClass(email)"
+                    ngControl="email">
+                    <div [hidden]="email.valid || email.pristine" class="invalid-feedback">
+                        Email is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Your LinkedIn URL:&nbsp;*</label>
+                    <input required type="url"
+                    class="form-control" [(ngModel)]="user1.linkedIn" placeholder="Your LinkedIn URL"
+                    #linkedIn="ngForm"
+                    [ngClass]="setCssValidityClass(linkedIn)"
+                    ngControl="linkedIn">
+                    <div [hidden]="linkedIn.valid || linkedIn.pristine" class="invalid-feedback">
+                        Your LinkedIn URL is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Your GitHub URL:&nbsp;*</label>
+                        <input required type="url"
+                        class="form-control" [(ngModel)]="user1.gitHub" placeholder="Your GitHub URL"
+                        #gitHub="ngForm"
+                        [ngClass]="setCssValidityClass(gitHub)"
+                        ngControl="gitHub">
+                        <div [hidden]="gitHub.valid || gitHub.pristine" class="invalid-feedback">
+                            Your GitHub URL is required
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+
+
+
+        <h2>Create the second team member</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>name:&nbsp;*</label>
+                    <input required type="text"
+                    class="form-control" [(ngModel)]="user2.name" placeholder="name"
+                    #name1="ngForm"
+                    [ngClass]="setCssValidityClass(name1)"
+                    ngControl="name1">
+                    <div [hidden]="name1.valid || name1.pristine" class="invalid-feedback">
+                    Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>password:&nbsp;*</label>
+                    <input placeholder="password" required type="password"
+                    class="form-control" [(ngModel)]="user2.password"
+                    #password1="ngForm"
+                    [ngClass]="setCssValidityClass(password1)"
+                    ngControl="password1">
+                    <div [hidden]="password1.valid || password1.pristine" class="invalid-feedback">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>email:&nbsp;*</label>
+                    <input required type="email"
+                    class="form-control" [(ngModel)]="user2.email" placeholder="email"
+                    #email1="ngForm"
+                    [ngClass]="setCssValidityClass(email1)"
+                    ngControl="email1">
+                    <div [hidden]="email1.valid || email1.pristine" class="invalid-feedback">
+                        Email is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Your LinkedIn URL:&nbsp;*</label>
+                    <input required type="url"
+                    class="form-control" [(ngModel)]="user2.linkedIn" placeholder="Your LinkedIn URL"
+                    #linkedIn1="ngForm"
+                    [ngClass]="setCssValidityClass(linkedIn1)"
+                    ngControl="linkedIn1">
+                    <div [hidden]="linkedIn1.valid || linkedIn1.pristine" class="invalid-feedback">
+                        Your LinkedIn URL is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Your GitHub URL:&nbsp;*</label>
+                    <input required type="url"
+                    class="form-control" [(ngModel)]="user2.gitHub" placeholder="Your GitHub URL"
+                    #gitHub1="ngForm"
+                    [ngClass]="setCssValidityClass(gitHub1)"
+                    ngControl="gitHub1">
+                    <div [hidden]="gitHub1.valid || gitHub1.pristine" class="invalid-feedback">
+                        Your GitHub URL is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+
+        <div *ngIf="numberOfMembers>2">
+                <h2>Create the third team member</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>name:&nbsp;*</label>
+                            <input required type="text"
+                            class="form-control" [(ngModel)]="user3.name" placeholder="name"
+                            #name2="ngForm"
+                            [ngClass]="setCssValidityClass(name2)"
+                            ngControl="name2">
+                            <div [hidden]="name2.valid || name2.pristine" class="invalid-feedback">
+                            Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>password:&nbsp;*</label>
+                            <input placeholder="password" required type="password"
+                            class="form-control" [(ngModel)]="user3.password"
+                            #password2="ngForm"
+                            [ngClass]="setCssValidityClass(password2)"
+                            ngControl="password2">
+                            <div [hidden]="password2.valid || password2.pristine" class="invalid-feedback">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>email:&nbsp;*</label>
+                            <input required type="email"
+                            class="form-control" [(ngModel)]="user3.email" placeholder="email"
+                            #email2="ngForm"
+                            [ngClass]="setCssValidityClass(email2)"
+                            ngControl="email2">
+                            <div [hidden]="email2.valid || email2.pristine" class="invalid-feedback">
+                                Email is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Your LinkedIn URL:&nbsp;*</label>
+                            <input required type="url"
+                            class="form-control" [(ngModel)]="user3.linkedIn" placeholder="Your LinkedIn URL"
+                            #linkedIn2="ngForm"
+                            [ngClass]="setCssValidityClass(linkedIn2)"
+                            ngControl="linkedIn2">
+                            <div [hidden]="linkedIn2.valid || linkedIn2.pristine" class="invalid-feedback">
+                                Your LinkedIn URL is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Your GitHub URL:&nbsp;*</label>
+                            <input required type="url"
+                            class="form-control" [(ngModel)]="user3.gitHub" placeholder="Your GitHub URL"
+                            #gitHub2="ngForm"
+                            [ngClass]="setCssValidityClass(gitHub2)"
+                            ngControl="gitHub2">
+                            <div [hidden]="gitHub2.valid || gitHub2.pristine" class="invalid-feedback">
+                                Your GitHub URL is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+        </div>
+
+
+        <div *ngIf="numberOfMembers>3">
+                <h2>Create the forth member</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>name:&nbsp;*</label>
+                            <input required type="text"
+                            class="form-control" [(ngModel)]="user4.name" placeholder="name"
+                            #name3="ngForm"
+                            [ngClass]="setCssValidityClass(name3)"
+                            ngControl="name3">
+                            <div [hidden]="name3.valid || name3.pristine" class="invalid-feedback">
+                            Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>password:&nbsp;*</label>
+                            <input placeholder="password" required type="password"
+                            class="form-control" [(ngModel)]="user4.password"
+                            #password3="ngForm"
+                            [ngClass]="setCssValidityClass(password3)"
+                            ngControl="password3">
+                            <div [hidden]="password3.valid || password3.pristine" class="invalid-feedback">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>email:&nbsp;*</label>
+                            <input required type="email"
+                            class="form-control" [(ngModel)]="user4.email" placeholder="email"
+                            #email3="ngForm"
+                            [ngClass]="setCssValidityClass(email3)"
+                            ngControl="email3">
+                            <div [hidden]="email3.valid || email3.pristine" class="invalid-feedback">
+                                Email is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Your LinkedIn URL:&nbsp;*</label>
+                            <input required type="url"
+                            class="form-control" [(ngModel)]="user4.linkedIn" placeholder="Your LinkedIn URL"
+                            #linkedIn3="ngForm"
+                            [ngClass]="setCssValidityClass(linkedIn3)"
+                            ngControl="linkedIn3">
+                            <div [hidden]="linkedIn3.valid || linkedIn3.pristine" class="invalid-feedback">
+                                Your LinkedIn URL is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Your GitHub URL:&nbsp;*</label>
+                            <input required type="url"
+                            class="form-control" [(ngModel)]="user4.gitHub" placeholder="Your GitHub URL"
+                            #gitHub3="ngForm"
+                            [ngClass]="setCssValidityClass(gitHub3)"
+                            ngControl="gitHub3">
+                            <div [hidden]="gitHub3.valid || gitHub3.pristine" class="invalid-feedback">
+                                Your GitHub URL is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+        </div>
+
+        <h2>Create your project</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="form-group">
+                    <label>Your project's name:&nbsp;*</label>
+                    <input required type="text"
+                    class="form-control" [(ngModel)]="project.title" placeholder="Your project name"
+                    #projectz="ngForm"
+                    [ngClass]="setCssValidityClass(projectz)"
+                    ngControl="projectz">
+                    <div [hidden]="projectz.valid || projectz.pristine" class="invalid-feedback">
+                        A project name is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Your project's description:&nbsp;*</label>
+                    <input required type="text"
+                    class="form-control" [(ngModel)]="project.description" placeholder="Your project description"
+                    #projectzd="ngForm"
+                    [ngClass]="setCssValidityClass(projectzd)"
+                    ngControl="projectzd">
+                    <div [hidden]="projectzd.valid || projectzd.pristine" class="invalid-feedback">
+                        A project description is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Your project's GitHub URL:&nbsp;*</label>
+                    <input required type="text"
+                    class="form-control" [(ngModel)]="project.gitHub" placeholder="Your project's GitHub URL"
+                    #projectzgh="ngForm"
+                    [ngClass]="setCssValidityClass(projectzgh)"
+                    ngControl="projectzgh">
+                    <div [hidden]="projectzgh.valid || projectzgh.pristine" class="invalid-feedback">
+                        A project GitHub URL is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Create your team</h2>
+
+        <div class="form-group">
+            <label>Your team name:&nbsp;*</label>
+            <input required type="text"
+            class="form-control" [(ngModel)]="user1.teamName" placeholder="Your team name"
+            #teamName="ngForm"
+            [ngClass]="setCssValidityClass(teamName)"
+            ngControl="teamName">
+            <div [hidden]="teamName.valid || teamName.pristine" class="invalid-feedback">
+                Your team name is required
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-auto">
+            <button [disabled]="!userForm.form.valid || numberOfMembers < 2 || numberOfMembers > 4" type="submit" class="btn btn-primary">
+                Submit
+            </button>
+            </div>
+            <small class="col text-right">*&nbsp;Required</small>
+        </div>
+
+        </form>
+
+    </div>
+
+    <div [hidden]="!submitted">
+        <div *ngIf="valid==true">
+            <div class="alert alert-success" role="alert">
+                Team created successfully
+            </div>
+        </div>
+        <div *ngIf="valid==false">
+            <div class="alert alert-danger" role="alert">
+                {{out}}
+            </div>
+            <button (click)="submitted=false" class="btn btn-primary">Edit</button>
+        </div>
+    </div>
+</div>

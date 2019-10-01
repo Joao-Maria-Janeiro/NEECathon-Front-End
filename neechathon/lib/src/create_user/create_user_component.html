@@ -1,0 +1,124 @@
+<!-- TODO: remove the next diagnostic line -->
+
+<br><br>
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Create User</h1>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+      <div class="form-group">
+        <label>name:&nbsp;*</label>
+        <input required type="text"
+        class="form-control" [(ngModel)]="model.name" placeholder="name"
+        #name="ngForm"
+        [ngClass]="setCssValidityClass(name)"
+        ngControl="name">
+        <div [hidden]="name.valid || name.pristine" class="invalid-feedback">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>password:&nbsp;*</label>
+        <input placeholder="password" required type="password"
+        class="form-control" [(ngModel)]="model.password"
+        #password="ngForm"
+        [ngClass]="setCssValidityClass(password)"
+        ngControl="password">
+        <div [hidden]="password.valid || password.pristine" class="invalid-feedback">
+            Password is required
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label>email:&nbsp;*</label>
+          <input required type="email"
+          class="form-control" [(ngModel)]="model.email" placeholder="email"
+          #email="ngForm"
+          [ngClass]="setCssValidityClass(email)"
+          ngControl="email">
+          <div [hidden]="email.valid || email.pristine" class="invalid-feedback">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Your LinkedIn URL:&nbsp;*</label>
+          <input required type="url"
+          class="form-control" [(ngModel)]="model.linkedIn" placeholder="Your LinkedIn URL"
+          #linkedIn="ngForm"
+          [ngClass]="setCssValidityClass(linkedIn)"
+          ngControl="linkedIn">
+          <div [hidden]="linkedIn.valid || linkedIn.pristine" class="invalid-feedback">
+              Your LinkedIn URL is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Your GitHub URL:&nbsp;*</label>
+          <input required type="url"
+          class="form-control" [(ngModel)]="model.gitHub" placeholder="Your GitHub URL"
+          #gitHub="ngForm"
+          [ngClass]="setCssValidityClass(gitHub)"
+          ngControl="gitHub">
+          <div [hidden]="gitHub.valid || gitHub.pristine" class="invalid-feedback">
+              Your GitHub URL is required
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label>Your team name:&nbsp;*</label>
+          <input required type="text"
+          class="form-control" [(ngModel)]="model.teamName" placeholder="Your team name"
+          #teamName="ngForm"
+          [ngClass]="setCssValidityClass(teamName)"
+          ngControl="teamName">
+          <div [hidden]="teamName.valid || teamName.pristine" class="invalid-feedback">
+              Your team name is required
+          </div>
+        </div>
+
+
+      <div class="row">
+        <div class="col-auto">
+          <button [disabled]="!userForm.form.valid" type="submit" class="btn btn-primary">
+              Submit
+          </button>
+        </div>
+        <small class="col text-right">*&nbsp;Required</small>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div [hidden]="!submitted">
+      <div *ngIf="success">
+          <div class="alert alert-success" role="alert">
+              User created successfully
+          </div>
+      </div>
+      <div *ngIf="success==false">
+          <div class="alert alert-danger" role="alert">
+              {{out}}
+          </div>
+      </div>
+      <button (click)="submitted=false" class="btn btn-primary">Edit</button>
+  </div>
+</div>
+
+<!-- <h2>{{model}}</h2>
+<div class="container">
+
+</div> -->
+
+<!--
+
+
+<div class="form-group">
+  <label for="teamName">Your team name&nbsp;*</label>
+  <input type="teamName" class="form-control" id="teamName" required
+         [(ngModel)]="model.teamName"
+         ngControl="teamName">
+</div> -->
